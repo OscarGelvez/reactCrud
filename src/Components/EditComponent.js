@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 class EditComponent extends Component {
+
     handleEdit = (e) => {
         e.preventDefault();
         const newTitle = this.getTitle.value;
@@ -13,7 +14,14 @@ class EditComponent extends Component {
         }
         this.props.dispatch({ type: 'UPDATE_POST', id: this.props.post.id, data: data })
     }
+
+    componentDidMount = () => {
+        this.getTitle.value = this.props.post.title;
+        this.getMessage.value = this.props.post.message;
+    }
+
     render() {
+
         return (
             <div className="card">
                 <div className="card-body">
@@ -29,7 +37,9 @@ class EditComponent extends Component {
                     </form>
                 </div>
             </div>
+
         );
+
     }
 }
 export default connect()(EditComponent);
